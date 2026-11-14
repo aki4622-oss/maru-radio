@@ -149,7 +149,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 @keyframes slide{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes rise{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
 /* the camera with her in it: big for the opening and closing, small (bottom right) while a news item shows its link card */
-#cam{left:992px;top:150px;width:896px;height:768px;background:var(--cam);border-radius:6px;
+#cam{left:992px;top:150px;width:896px;height:768px;background:var(--cambg,var(--cam));border-radius:6px;
   transition:left .6s cubic-bezier(.2,.8,.2,1),top .6s cubic-bezier(.2,.8,.2,1),width .6s cubic-bezier(.2,.8,.2,1),height .6s cubic-bezier(.2,.8,.2,1)}
 .has-card #cam{left:1411px;top:530px;width:477px;height:409px}
 /* today's weather, in the room left of her small camera (while a news item shows its link card); a click: the viewer's own area */
@@ -213,7 +213,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #card .desc{display:none;font-size:20px;line-height:1.5;color:#c9ccd6;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #card.noimg .desc{display:-webkit-box}
 #card .open{margin-top:auto;font:700 16px var(--mono);color:var(--muted);letter-spacing:2px}
-#cam img,#cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:6px}
+#cam img,#cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:6px}
 #cam video{opacity:0;transition:opacity .16s linear}
 #cam video.on{opacity:1}
 #casters{position:absolute;inset:0}
@@ -598,6 +598,7 @@ function showCaster(id) {
   if (!c || CAST.current === c) return;
   const old = CAST.current;
   if (old) { driveCaster(old, false); old.vids.forEach(v => { v.pause(); v.classList.remove("on"); }); if (old.idleVid) old.idleVid.pause(); old.wrap.classList.remove("show"); }
+  if (c.pack.background) document.documentElement.style.setProperty("--cambg", c.pack.background);
   CAST.current = c;
   c.wrap.classList.add("show");
   const cr = $("camCredit"); if (cr) { cr.textContent = c.name || ""; cr.hidden = !c.name; }
