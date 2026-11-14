@@ -56,7 +56,14 @@
      "say": "うちの鍵にも付けたいな。ゆうくん、鍵をなくすことあるもんね。",
      "show": "うちの鍵にも付けたいな。ゆうくん、鍵をなくすことあるもんね。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://www.itmedia.co.jp/mobile/articles/2611/11/news068.html",
+    "title": "「Google Pixel Tag」登場　10億台超規模のFind HubネットワークとUWBで高精度探索　Google初のトラッカー",
+    "site": "itmedia.co.jp",
+    "description": "Googleは同社初となるトラッカータグ「Google Pixel Tag」を発表した。10億台超のAndroidデバイスで構成されるFind HubネットワークやUWB技術を活用し、高精度な位置特定と置き忘れ通知に対応する。日本国内では11月に発売予定で、価格は単品が5010円、4個セットが1万6940円だ。",
+    "image": "thumbs/2026-11-12/01.jpg"
+   }
   },
   {
    "label": "「生分解性」でも分解しないプラも",
@@ -87,7 +94,14 @@
      "say": "そうなの。酸素のない埋め立て地では、分解を助ける微生物の働きも変わるそうで。捨てたあとのことまで考えて選ぶ、って大事なのね。",
      "show": "そうなの。酸素のない埋め立て地では、分解を助ける微生物の働きも変わるそうで。捨てたあとのことまで考えて選ぶ、って大事なのね。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://www.kaist.ac.kr/newsen/html/news/?mng_no=69290&mode=V",
+    "title": "Divergent anaerobic fates of biodegradable plastics in landfill leachate",
+    "site": "kaist.ac.kr",
+    "description": "Even among plastics labelled “biodegradable,” some break down readily while others persist for long periods; in experiments using landfill leachate, a KAIST-led team demonstrated these differences and identified candidate microorganisms and enzymes potentially involved in plastic degradation.",
+    "image": "thumbs/2026-11-12/02.jpg"
+   }
   },
   {
    "label": "TOKYO周穫祭、来週末に開催",
@@ -118,7 +132,14 @@
      "say": "島の温泉や銭湯の体験もあるみたい。東京にも、まだ知らない楽しみがたくさんあるのね。",
      "show": "島の温泉や銭湯の体験もあるみたい。東京にも、まだ知らない楽しみがたくさんあるのね。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://home.kingsoft.jp/news/pr/atpress/646161.html",
+    "title": "過去最高の23団体が出展！今年もパワーアップして帰ってきた！TOKYO周穫祭2026 11月21日(土)・22日(日)開催",
+    "site": "home.kingsoft.jp",
+    "description": "東京都と東京観光財団は、都内の観光協会と連携し、23区・多摩・島しょの多彩な魅力が一堂に会する「TOKYO周穫祭(しゅうかくさい)2026」を、2026年11月21日(土)・22日(日)の2日間、東京国際フォーラムにて開催します。",
+    "image": "thumbs/2026-11-12/03.jpg"
+   }
   },
   {
    "label": "サイバーエージェント、MAPPAと提携",
@@ -145,7 +166,14 @@
      "say": "呪術廻戦、大好きだよ。作る力と届ける力が合わさったら、どんな作品が生まれるのかな。楽しみだね。",
      "show": "呪術廻戦、大好きだよ。作る力と届ける力が合わさったら、どんな作品が生まれるのかな。楽しみだね。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://www.47news.jp/15215498.html",
+    "title": "サイバーエージェント、MAPPAと業務提携契約を締結　親会社MHDの株式の一部取得",
+    "site": "47news.jp",
+    "description": "サイバーエージェントは、アニメーション制作とライツ事業を手がける株式会社MAPPAと業務提携契約を締結するとともに、MAPPAの親会社である株式会社MHDの株式の一部を取得したことを発表した。",
+    "image": "thumbs/2026-11-12/04.jpg"
+   }
   },
   {
    "label": "速歩きとゆっくり歩きで体力アップ",
@@ -176,7 +204,14 @@
      "say": "ゆうくんの駅までの道にも、ぴったりじゃない？速歩き3分、ゆっくり3分って、リズムがつかみやすそう。",
      "show": "ゆうくんの駅までの道にも、ぴったりじゃない？速歩き3分、ゆっくり3分って、リズムがつかみやすそう。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://www.fnn.jp/articles/-/1150593",
+    "title": "世界が注目！「インターバル速歩」体力向上や生活習慣病予防へ期待　常識変えるウォーキングを体験（鳥取）",
+    "site": "fnn.jp",
+    "description": "「インターバル速歩」とは「速歩き」と「ゆっくり歩き」を3分間ずつ交互に繰り返すウォーキング法。信州大学の研究チームが考案し、短い時間でも高い運動効果を得られるとされています。",
+    "image": "thumbs/2026-11-12/05.jpg"
+   }
   },
   {
    "label": "ピックアップ：第60回日野市産業まつり",
@@ -195,7 +230,11 @@
      "say": "商店や飲食店の出店、市内企業の展示、野菜の即売に加えて、ミニSLやポニーとのふれあい、ブラスバンドのステージもあるそうです。お仕事体験フェスも開かれるので、家族で楽しめそうです。",
      "show": "商店や飲食店の出店、市内企業の展示、野菜の即売に加えて、ミニSLやポニーとのふれあい、ブラスバンドのステージもあるそうです。お仕事体験フェスも開かれるので、家族で楽しめそうです。"
     }
-   ]
+   ],
+   "link": {
+    "title": "ピックアップ：第60回日野市産業まつり",
+    "image": "assets/pickup-kaede.jpg"
+   }
   }
  ],
  "closing": [
@@ -608,5 +647,6 @@
    "end": 438.72
   }
  ],
- "made_at": "2026-11-14T14:10:00+09:00"
+ "made_at": "2026-11-14T14:10:00+09:00",
+ "highlight": 5
 }

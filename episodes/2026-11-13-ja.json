@@ -60,7 +60,14 @@
      "say": "ねぇ、ワクチンは待たずに、早めの対策が大事って言ってたわね。手洗いとうがい、換気もね。",
      "show": "ねぇ、ワクチンは待たずに、早めの対策が大事って言ってたわね。手洗いとうがい、換気もね。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://news.livedoor.com/article/detail/32795701/",
+    "title": "なぜ夏からインフルエンザが流行した？専門家が注意を促す「冬にもう一度流行が拡大する可能性」と基本的な感染対策",
+    "site": "news.livedoor.com",
+    "description": "今シーズンのインフルエンザは8月末に流行入りし、例年より異例の早さだった。帝京大の吉野医師は、冬にもう一度流行が拡大する可能性があると注意を促した。H1N1が中心で免疫不足が一因の可能性があり、早めの基本的な対策が重要という",
+    "image": "thumbs/2026-11-13/01.jpg"
+   }
   },
   {
    "label": "AIを35秒で止める仕組み、OpenAIが公開",
@@ -91,7 +98,14 @@
      "say": "止める仕組みが壊れても止まるって、なんだか安心だね。ブレーキのブレーキ、みたいな感じ？",
      "show": "止める仕組みが壊れても止まるって、なんだか安心だね。ブレーキのブレーキ、みたいな感じ？"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://openai.com/index/control-room",
+    "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
+    "site": "openai.com",
+    "description": "Control Room is a central system to track model workloads across our research infrastructure and stop them quickly when safety or security concerns arise.",
+    "image": "thumbs/2026-11-13/02.jpg"
+   }
   },
   {
    "label": "AI同士のチームは1人より結果が悪い",
@@ -122,7 +136,14 @@
      "say": "みんな自分の担当だけ見てると、全体が見えなくなるのよね。まとめる人が一人いると、ぐっとうまくいくって、面白いわね。",
      "show": "みんな自分の担当だけ見てると、全体が見えなくなるのよね。まとめる人が一人いると、ぐっとうまくいくって、面白いわね。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://alignment.anthropic.com/2026/worse-together/",
+    "title": "Worse Together: How Performance Breaks Down in Multi-User Multi-Agent Teams",
+    "site": "alignment.anthropic.com",
+    "description": "In all four simulated environments tested, group outcomes were worse when each user delegated to their own agent rather than when one agent served everyone.",
+    "image": "thumbs/2026-11-13/03.jpg"
+   }
   },
   {
    "label": "「楽園追放」続編、今日公開",
@@ -153,7 +174,14 @@
      "say": "前作も観たよ。アンジェラが地上に降りてくる場面、かっこよかったなぁ。今日公開って、観に行きたくなっちゃうね。",
      "show": "前作も観たよ。アンジェラが地上に降りてくる場面、かっこよかったなぁ。今日公開って、観に行きたくなっちゃうね。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://www.zaikei.co.jp/article/20261112/877260.html",
+    "title": "「楽園追放 心のレゾナンス」11月13日公開―脳と身体の研究から読む電脳世界",
+    "site": "zaikei.co.jp",
+    "description": "11月13日公開の「楽園追放 心のレゾナンス」を前に、電脳世界の設定を脳エミュレーション研究や人格の同一性の議論から読み解く。",
+    "image": "thumbs/2026-11-13/04.jpg"
+   }
   },
   {
    "label": "ブラジル沖で新種の深海生物31種",
@@ -184,7 +212,14 @@
      "say": "傷つけずに調べる、っていいわね。知るために採る、から、生きたまま見つめる時代へ。海の研究も、やさしくなってるのね。",
      "show": "傷つけずに調べる、っていいわね。知るために採る、から、生きたまま見つめる時代へ。海の研究も、やさしくなってるのね。"
     }
-   ]
+   ],
+   "link": {
+    "url": "https://home.kingsoft.jp/news/amusing/nazology/196357.html",
+    "title": "「新種の深海生物」31種をブラジル沖で発見",
+    "site": "home.kingsoft.jp",
+    "description": "米シュミット海洋研究所（SOI）の調査船「Falkor (too)」に乗り込んだ国際研究チームは、熱帯南大西洋のブラジル沖で行った2週間の探査により、31種の新たな海洋生物を確認したと報告。",
+    "image": "thumbs/2026-11-13/05.jpg"
+   }
   },
   {
    "label": "ピックアップ：幕張メッセで開かれている「ネクステックウィーク2026秋」の話題です",
@@ -203,7 +238,11 @@
      "say": "考えるだけのAIから、体を動かして現場で働くAIへ。ものづくりの現場やインフラの点検など、人の手が足りない場所で、ロボットが活躍する時代が近づいているようです。",
      "show": "考えるだけのAIから、体を動かして現場で働くAIへ。ものづくりの現場やインフラの点検など、人の手が足りない場所で、ロボットが活躍する時代が近づいているようです。"
     }
-   ]
+   ],
+   "link": {
+    "title": "ピックアップ：幕張メッセで開かれている「ネクステックウィーク2026秋」の話題です",
+    "image": "assets/pickup-makoto.jpg"
+   }
   }
  ],
  "closing": [
@@ -532,31 +571,37 @@
   },
   {
    "kind": "news",
+   "index": 0,
    "start": 38.859,
    "end": 97.227
   },
   {
    "kind": "news",
+   "index": 1,
    "start": 97.227,
    "end": 152.949
   },
   {
    "kind": "news",
+   "index": 2,
    "start": 152.949,
    "end": 210.603
   },
   {
    "kind": "news",
+   "index": 3,
    "start": 210.603,
    "end": 267.392
   },
   {
    "kind": "news",
+   "index": 4,
    "start": 267.392,
    "end": 324.288
   },
   {
    "kind": "news",
+   "index": 5,
    "start": 324.288,
    "end": 363.221
   },
@@ -566,5 +611,6 @@
    "end": 469.835
   }
  ],
- "made_at": "2026-11-14T15:29:50+09:00"
+ "made_at": "2026-11-14T15:40:19+09:00",
+ "highlight": 5
 }

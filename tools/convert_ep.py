@@ -47,9 +47,9 @@ closing = [line(i) for i in range(rest_start, n)]
 def tstart(i): return tims[i]['start']
 parts = [{'kind': 'opening', 'start': 0.0, 'end': tstart(news_starts)}]
 idx = news_starts
-for c in cards:
+for ci, c in enumerate(cards):
     cnt = len(c['lines'])
-    parts.append({'kind': 'news', 'start': tstart(idx), 'end': tstart(idx + cnt) if idx + cnt < n else tims[-1]['end']})
+    parts.append({'kind': 'news', 'index': ci, 'start': tstart(idx), 'end': tstart(idx + cnt) if idx + cnt < n else tims[-1]['end']})
     idx += cnt
 if rest_start < n:
     parts.append({'kind': 'closing', 'start': tstart(rest_start), 'end': tims[-1]['end']})

@@ -786,7 +786,8 @@ function partHtml(p) {
 function pickHtml() {
   const n = ep.news[ep.highlight], l = n?.link;
   if (!l?.image || l.status === 404 || l.status === 410) return "";
-  return `<a class="pick" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(l.image)}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><span>${esc(n.label)}<i>↗</i></span></a>`;
+  const inner = `<img src="${esc(l.image)}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><span>${esc(n.label)}<i>↗</i></span>`;
+  return l.url ? `<a class="pick" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${inner}</a>` : `<span class="pick">${inner}</span>`;
 }
 // on a narrow screen the "how it works" link gives up its words (keeps the icon) when the station's name would not fit
 function fitHow() {
@@ -898,7 +899,7 @@ function showCard(link) {
   if (!link) return;
   const host = (() => { try { return new URL(link.url).hostname; } catch { return ""; } })();
   const missing = link.status === 404 || link.status === 410;
-  card.href = link.url;
+  if (link.url) card.href = link.url; else card.removeAttribute("href");
   card.querySelector(".site").textContent = (link.found_by ? tr("related") + tr("sep") : "") + (link.site || host);
   card.querySelector(".ttl").textContent = missing ? tr("notFound")(link.status) : (link.title || link.url);
   card.querySelector(".desc").textContent = missing ? link.url : (link.description || "");
