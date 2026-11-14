@@ -438,7 +438,16 @@ html.phone .sound input{display:none}
 html.phone .controls .time{font-size:12px}
 html.phone #share{padding:0 9px}
 html.phone #share span{display:none}
-</style>
+
+/* ===== maru fork: 6 themes carried over from the old station ===== */
+[data-theme="amber"]{--yellow:#ffb454;--ink:#0d1117;--cam:#161d26;--line:#2d3744;--muted:#96a0aa;--red:#b42828;--teal:#ffb454}
+[data-theme="cyan"]{--yellow:#00e5ff;--ink:#04070d;--cam:#0a111e;--line:#1d3350;--muted:#8fb4c7;--red:#ff2e88;--teal:#00e5ff}
+[data-theme="lime"]{--yellow:#b6ff2e;--ink:#060805;--cam:#0d120b;--line:#2a3a1e;--muted:#a8b89a;--red:#ff5533;--teal:#b6ff2e}
+[data-theme="violet"]{--yellow:#c77dff;--ink:#0b0614;--cam:#150c24;--line:#342052;--muted:#b3a3cc;--red:#ff4d6d;--teal:#c77dff}
+[data-theme="sunset"]{--yellow:#ff8a3c;--ink:#100705;--cam:#1c0e08;--line:#452a18;--muted:#c7a48f;--red:#ff3355;--teal:#ff8a3c}
+[data-theme="miku"]{--yellow:#39C5BB;--ink:#050d0e;--cam:#0b1d20;--line:#1d4046;--muted:#93b8b5;--red:#FF2E88;--teal:#FF2E9E}
+#themeSel{background:var(--cam);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:2px 6px;font:inherit}
+</style><script>try{document.documentElement.dataset.theme=localStorage.getItem("maru-gh-theme")||"amber"}catch(e){document.documentElement.dataset.theme="amber"}</script>
 </head>
 <body>
 <main>
@@ -486,7 +495,7 @@ html.phone #share span{display:none}
   <details id="scriptBox"><summary id="scriptSum">台本を読む</summary><div class="source" id="scriptText"></div></details>
   <h1 id="pastH">これまでの放送</h1>
   <div class="eps" id="eps"></div>
-  <footer><span id="credits"></span> ／ <a href="https://github.com/monoradio102/myradio">myradio</a></footer>
+  <footer><span id="credits"></span> ／ <a href="https://github.com/monoradio102/myradio">myradio</a> ／ <label>テーマ <select id="themeSel"><option value="amber">アンバー</option><option value="cyan">シアン</option><option value="lime">ライム</option><option value="violet">バイオレット</option><option value="sunset">サンセット</option><option value="miku">ミク</option></select></label></footer>
 </main>
 <audio id="audio" preload="auto"></audio>
 <script>
@@ -591,7 +600,6 @@ function showCaster(id) {
   if (old) { driveCaster(old, false); old.vids.forEach(v => { v.pause(); v.classList.remove("on"); }); if (old.idleVid) old.idleVid.pause(); old.wrap.classList.remove("show"); }
   CAST.current = c;
   c.wrap.classList.add("show");
-  if (c.pack.background) document.documentElement.style.setProperty("--cam", c.pack.background);
   const cr = $("camCredit"); if (cr) { cr.textContent = c.name || ""; cr.hidden = !c.name; }
   if (c.idleVid) c.idleVid.play().catch(() => {});
   if (CAST.talking) driveCaster(c, true);
@@ -1342,6 +1350,15 @@ async function init() {
   let saved = null; try { saved = localStorage.getItem("lang"); } catch {}
   const pref = wantLang || saved || ((navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en");
   load(eps.some(e => e.date === want) ? want : eps[0].date, pref);
+}
+// ===== maru fork: theme switcher wiring =====
+const themeSel = $("themeSel");
+if (themeSel) {
+  themeSel.value = document.documentElement.dataset.theme || "amber";
+  themeSel.addEventListener("change", () => {
+    document.documentElement.dataset.theme = themeSel.value;
+    try { localStorage.setItem("maru-gh-theme", themeSel.value); } catch {}
+  });
 }
 init();
 </script>
