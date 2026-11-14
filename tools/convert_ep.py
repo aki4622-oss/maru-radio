@@ -42,6 +42,16 @@ if 'pickup' in segs:
         if tail: label = 'ピックアップ：' + tail
     cards.append({'label': label, 'points': [], 'url': '', 'lines': [line(i) for i in range(p, f)]})
     rest_start = f
+if 'freetalk' in segs:
+    f = segs['freetalk']
+    sign = next((i for i in range(f, n) if '今日のマルラジオはここまで' in sens[i]['show']), None)
+    if sign is not None:
+        pts = {}
+        pf = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'freetalk-points.json')
+        if os.path.exists(pf): pts = json.load(open(pf, encoding='utf-8'))
+        cards.append({'label': '姉妹トーク', 'freetalk': True, 'points': pts.get(DATE, []),
+                      'url': '', 'lines': [line(i) for i in range(f, sign)]})
+        rest_start = sign
 closing = [line(i) for i in range(rest_start, n)]
 # segments (player parts) from timed boundaries
 def tstart(i): return tims[i]['start']

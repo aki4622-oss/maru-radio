@@ -786,7 +786,7 @@ function partHtml(p) {
   if (p.kind === "closing")
     return `<div class="tag">SEE YOU</div><div class="big">${tr("bye")}</div><div class="closing-title">${esc(ep.title)}</div>${pickHtml()}`;
   const n = ep.news[p.index];
-  return `<div class="tag">NEWS ${String(p.index + 1).padStart(2, "0")} / ${String(ep.news.length).padStart(2, "0")}</div>
+  return `<div class="tag">${n.freetalk ? "おまけトーク" : `NEWS ${String(p.index + 1).padStart(2, "0")} / ${String(ep.news.length).padStart(2, "0")}`}</div>
     <h2>${headCopy(n.label, esc(n.label))}</h2><ul>${n.points.map((x, j) =>
       `<li class="more" data-point="${j}" tabindex="0" aria-expanded="false" style="animation-delay:${0.35 + j * 0.45}s"><span class="pt">${esc(x)}</span><div class="detail"><div>${
         n.details?.[j] ? `<p>${esc(n.details[j])}</p>` : `<p class="none">${tr("none")}</p>`}</div></div></li>`).join("")}</ul>`;
@@ -909,6 +909,7 @@ function showCard(link) {
   const host = (() => { try { return new URL(link.url).hostname; } catch { return ""; } })();
   const missing = link.status === 404 || link.status === 410;
   if (link.url) card.href = link.url; else card.removeAttribute("href");
+  $("cardOpen").style.display = link.url ? "" : "none";
   card.querySelector(".site").textContent = (link.found_by ? tr("related") + tr("sep") : "") + (link.site || host);
   card.querySelector(".ttl").textContent = missing ? tr("notFound")(link.status) : (link.title || link.url);
   card.querySelector(".desc").textContent = missing ? link.url : (link.description || "");
@@ -1101,8 +1102,8 @@ async function load(date, lang = LANG, at = 0) {
   $("toc").innerHTML =
     (openSeg >= 0 ? `<button data-seg="${openSeg}">天<span>天気・オープニング</span></button>` : "") +
     ep.news.map((n, j) =>
-    `<button data-seg="${newsSeg(j)}">${String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("") +
-    (closeSeg >= 0 ? `<button data-seg="${closeSeg}">ト<span>締め・おまけトーク</span></button>` : "");
+    `<button data-seg="${newsSeg(j)}">${n.freetalk ? "ト" : String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("") +
+    (closeSeg >= 0 && !ep.news.some(n => n.freetalk) ? `<button data-seg="${closeSeg}">ト<span>締め・おまけトーク</span></button>` : "");
   document.querySelectorAll("#eps a").forEach(a => a.classList.toggle("cur", a.dataset.date === date));
   $("loading").textContent = "";
   // switching the language keeps the place in the show: the same part, from its start

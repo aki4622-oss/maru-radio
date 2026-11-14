@@ -17,7 +17,9 @@ for f in sorted(glob.glob(f'{ROOT}/episodes/*-ja.json')):
     date = ep['date']
     pickup_idx = None
     for i, card in enumerate(ep['news']):
-        if card['label'].startswith('ピックアップ'):
+        if card.get('freetalk'):
+            card['link'] = {'title': card['label'], 'image': 'assets/freetalk.jpg'}
+        elif card['label'].startswith('ピックアップ'):
             card['link'] = {'title': card['label'], 'image': f"assets/pickup-{MAIN[date]}.jpg"}
             pickup_idx = i
         else:
