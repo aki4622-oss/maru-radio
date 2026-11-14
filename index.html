@@ -1095,8 +1095,13 @@ async function load(date, lang = LANG, at = 0) {
       + `<ul class="pts">${n.points.map((x, k) => `<li><b>${esc(x)}</b>${n.details?.[k] ? `<span>${esc(n.details[k])}</span>` : ""}</li>`).join("")}</ul>`
       + `<div class="srcs">${src ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
   }).join("");
-  $("toc").innerHTML = ep.news.map((n, j) =>
-    `<button data-seg="${newsSeg(j)}">${String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("");
+  const openSeg = ep.segments.findIndex(s => s.kind === "opening");
+  const closeSeg = ep.segments.findIndex(s => s.kind === "closing");
+  $("toc").innerHTML =
+    (openSeg >= 0 ? `<button data-seg="${openSeg}">天<span>天気・オープニング</span></button>` : "") +
+    ep.news.map((n, j) =>
+    `<button data-seg="${newsSeg(j)}">${String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("") +
+    (closeSeg >= 0 ? `<button data-seg="${closeSeg}">ト<span>締め・おまけトーク</span></button>` : "");
   document.querySelectorAll("#eps a").forEach(a => a.classList.toggle("cur", a.dataset.date === date));
   $("loading").textContent = "";
   // switching the language keeps the place in the show: the same part, from its start
