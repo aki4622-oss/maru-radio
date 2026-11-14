@@ -1,0 +1,13 @@
+{
+ "background": "#faf2e7",
+ "format": "myradio/character-1",
+ "idle": "idle.webp",
+ "idle_clip": "idle.mp4",
+ "name": "甘音",
+ "talk": [
+  "talk-1.mp4",
+  "talk-2.mp4",
+  "talk-3.mp4"
+ ],
+ "type": "clips"
+}
