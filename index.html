@@ -835,6 +835,10 @@ function partHtml(p) {
       <ol>${ep.news.map((n, j) => `<li data-n="${String(j + 1).padStart(2, "0")}" data-seg="${newsSeg(j)}" style="animation-delay:${0.25 + j * 0.12}s">${esc(n.label)}</li>`).join("")}</ol>`;
   if (p.kind === "closing")
     return `<div class="tag">SEE YOU</div><div class="big">${tr("bye")}</div><div class="closing-title">${esc(ep.title)}</div>${pickHtml()}`;
+  if (p.kind === "weather" && ep.weather)
+    return `<div class="tag">天気</div>
+    <h2>${headCopy(ep.weather.label, esc(ep.weather.label))}</h2><ul>${ep.weather.points.map((x, j) =>
+      `<li style="animation-delay:${0.35 + j * 0.45}s"><span class="pt">${esc(x)}</span></li>`).join("")}</ul>`;
   const n = ep.news[p.index];
   return `<div class="tag">${n.freetalk ? "おまけトーク" : `NEWS ${String(p.index + 1).padStart(2, "0")} / ${String(ep.news.length).padStart(2, "0")}`}</div>
     <h2>${headCopy(n.label, esc(n.label))}</h2><ul>${n.points.map((x, j) =>
@@ -1143,14 +1147,18 @@ async function load(date, lang = LANG, at = 0) {
   const linkLine = (l, label) => { const bad = l.status === 404 || l.status === 410, host = (() => { try { return new URL(l.url).hostname; } catch { return l.url; } })();
     return `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer"><small>${label}${esc(l.site || host)}${bad ? tr("sep") + "⚠ " + tr("notFound")(l.status) : l.title ? tr("sep") + esc(l.title) : ""}</small></a>`; };
   // the news to read: headline (jumps the player there), the points with their details, the sources, the share image
-  $("links").innerHTML = `<h1>${tr("news")}</h1>` + ep.news.map((n, j) => {
+  const wxSegI = ep.weather ? ep.segments.findIndex(s => s.kind === "weather") : -1;
+  const wxItem = wxSegI >= 0 ? `<article class="item"><button class="jump" data-seg="${wxSegI}" title="${tr("jump")}"><span class="d">天</span><b>${esc(ep.weather.label)}</b><i>${mmss(ep.segments[wxSegI]?.start || 0)}</i></button>`
+    + (ep.weather.link?.image ? `<span class="pic"><img src="${esc(ep.weather.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></span>` : "")
+    + `<ul class="pts">${ep.weather.points.map(x => `<li><b>${esc(x)}</b></li>`).join("")}</ul><div class="srcs"></div></article>` : "";
+  $("links").innerHTML = `<h1>${tr("news")}</h1>` + wxItem + ep.news.map((n, j) => {
     const src = srcOf(n), img = n.link?.image && n.link.status !== 404;
     return `<article class="item"><button class="jump" data-seg="${newsSeg(j)}" title="${tr("jump")}"><span class="d">${String(j + 1).padStart(2, "0")}</span><b>${esc(n.label)}</b><i>${mmss(ep.segments[newsSeg(j)]?.start || 0)}</i></button>`
       + (img ? (n.link.url ? `<a class="pic" href="${esc(n.link.url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(n.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></a>` : `<span class="pic"><img src="${esc(n.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></span>`) : "")
       + `<ul class="pts">${n.points.map((x, k) => `<li><b>${esc(x)}</b>${n.details?.[k] ? `<span>${esc(n.details[k])}</span>` : ""}</li>`).join("")}</ul>`
       + `<div class="srcs">${src && src.url ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
   }).join("");
-  const openSeg = ep.segments.findIndex(s => s.kind === "opening");
+  const openSeg = (() => { const w = ep.segments.findIndex(s => s.kind === "weather"); return w >= 0 ? w : ep.segments.findIndex(s => s.kind === "opening"); })();
   const closeSeg = ep.segments.findIndex(s => s.kind === "closing");
   $("toc").innerHTML =
     (openSeg >= 0 ? `<button data-seg="${openSeg}">天<span>天気・オープニング</span></button>` : "") +

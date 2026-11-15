@@ -38,6 +38,8 @@ for f in sorted(glob.glob(f'{ROOT}/episodes/*-ja.json')):
             host = urlparse(url).hostname or ''
             card['link'] = {'url': url, 'title': ogp.get('title', ''), 'site': host.removeprefix('www.'),
                             'description': ogp.get('description', ''), 'image': f'thumbs/{date}/{i + 1:02d}.jpg'}
+    if ep.get('weather'):
+        ep['weather']['link'] = {'title': ep['weather']['label'], 'image': f'thumbs/{date}/00.jpg'}
     ep['highlight'] = pickup_idx if pickup_idx is not None else 0
     json.dump(ep, open(f, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(date, '| cards:', len(ep['news']), '| highlight:', ep['highlight'])

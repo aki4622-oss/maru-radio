@@ -75,7 +75,10 @@ if 'freetalk' in segs:
 closing = [line(i) for i in range(mid_closing[0], mid_closing[1])] if mid_closing else [line(i) for i in range(rest_start, n)]
 # segments (player parts) from timed boundaries
 def tstart(i): return tims[i]['start']
-parts = [{'kind': 'opening', 'start': 0.0, 'end': tstart(news_starts)}]
+wline = segs.get('weather')
+parts = [{'kind': 'opening', 'start': 0.0, 'end': tstart(wline) if wline is not None else tstart(news_starts)}]
+if wline is not None:
+    parts.append({'kind': 'weather', 'start': tstart(wline), 'end': tstart(news_starts)})
 idx = news_starts
 for ci, c in enumerate(cards):
     if mid_closing is not None and c.get('freetalk'):
@@ -90,6 +93,7 @@ ep = {'format': 'monoradio/news-1', 'title': f"{meta['date_label']}の放送", '
       'seconds': tims[-1]['end'], 'opening': opening, 'news': cards, 'closing': closing,
       'lines_timed': [timed(i) for i in range(n)], 'segments': parts,
       'made_at': __import__('datetime').datetime.now(__import__('datetime').timezone(__import__('datetime').timedelta(hours=9))).isoformat(timespec='seconds')}
+if wline is not None: ep['weather'] = {'label': topics[0]['title'], 'points': topics[0].get('bullets', []), 'lines': [line(i) for i in range(wline, news_starts)]}
 if os.path.exists(f'{ROOT}/thumbs/{DATE}/end.jpg'): ep['endcard'] = f'thumbs/{DATE}/end.jpg'
 out = f'{ROOT}/episodes/{DATE}-ja.json'
 json.dump(ep, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
