@@ -53,18 +53,18 @@
      "show": "参加者はおよそ2000人の見込みです。初日は基調講演と15の技術セッションが予定されています。"
     }
    ],
+   "details": [
+    "ソウル・COEXで9〜10日に開かれる「NVIDIA AI Day Seoul 2026」です。",
+    "サムスン電子やSKハイニックス、LGエレクトロニクスなど韓国の大手企業が登壇し、エージェントAIやフィジカルAIの事例を紹介するそうです。",
+    "参加者はおよそ2000人の見込みで、初日は基調講演と15の技術セッションが予定されています。"
+   ],
    "link": {
     "url": "https://en.edaily.co.kr/news/eda202611025133/",
     "title": "Samsung, SK, LG Corp., Naver, and Coupang All in Attendance… NVIDIA Hosts 'AI Day' in Seoul",
     "site": "en.edaily.co.kr",
     "description": "NVIDIA will host “NVIDIA AI Day Seoul 2026,” an artificial intelligence (AI) developer event, in Seoul for two days starting on the 9th.",
     "image": "thumbs/2026-11-09/01.jpg"
-   },
-   "details": [
-    "ソウル・COEXで9〜10日に開かれる「NVIDIA AI Day Seoul 2026」です。",
-    "サムスン電子やSKハイニックス、LGエレクトロニクスなど韓国の大手企業が登壇し、エージェントAIやフィジカルAIの事例を紹介するそうです。",
-    "参加者はおよそ2000人の見込みで、初日は基調講演と15の技術セッションが予定されています。"
-   ]
+   }
   },
   {
    "label": "Anthropic、IPOロードショーへ",
@@ -88,18 +88,18 @@
      "show": "1兆5000億ドルって、円にしたら200兆円超えだよ。すごい金額だねぇ。"
     }
    ],
+   "details": [
+    "Anthropicの新規株式公開（IPO）に向け、今週から投資家への説明（ロードショー）が始まると報じられています。",
+    "想定されていた1兆5000億ドルという企業価値には、疑問の声も出ています。",
+    "先週のAI株の急落が、影を落としています。"
+   ],
    "link": {
     "url": "https://fourweekmba.com/ai-coreweave-nebius-openai-cyber-event-set-the-ai-week-ahead/",
     "title": "CoreWeave, Nebius, OpenAI Cyber Event Set the AI Week Ahead",
     "site": "fourweekmba.com",
     "description": "CoreWeave reports third-quarter results on Tuesday, November 10, Nebius on Thursday, November 12, and OpenAI holds a live cyber keynote the same Thursday.",
     "image": "thumbs/2026-11-09/02.jpg"
-   },
-   "details": [
-    "Anthropicの新規株式公開（IPO）に向け、今週から投資家への説明（ロードショー）が始まると報じられています。",
-    "想定されていた1兆5000億ドルという企業価値には、疑問の声も出ています。",
-    "先週のAI株の急落が、影を落としています。"
-   ]
+   }
   },
   {
    "label": "シンキングマシンズ「インクリング2」発表",
@@ -123,18 +123,18 @@
      "show": "重みは来週、オープンライセンスでの公開が予定されています。まず外部の安全性評価を終えてから、とのことです。"
     }
    ],
+   "details": [
+    "ミラ・ムラティ氏が率いるシンキングマシンズが、新しいAIモデル「インクリング2スモール」を発表しました。",
+    "全部で5940億ものパラメーターを持つ大きなモデルで、長時間の作業をひとりでこなす能力が売りだそうです。",
+    "重みは来週、外部の安全性評価を終えてから、オープンライセンス（Apache 2.0）での公開が予定されています。"
+   ],
    "link": {
     "url": "https://venturebeat.com/technology/thinking-machines-launches-inkling-2-small-with-near-frontier-performance-on-enterprise-benchmarks",
     "title": "Thinking Machines launches Inkling 2 Small with near-frontier performance on enterprise benchmarks",
     "site": "venturebeat.com",
     "description": "Thinking Machines Lab, the AI startup led by former OpenAI chief technology officer Mira Murati, introduced Inkling 2 Small on November 5, giving developers a new option for agents that write software, interpret images, analyze financial documents and learn company-specific workflows.",
     "image": "thumbs/2026-11-09/03.jpg"
-   },
-   "details": [
-    "ミラ・ムラティ氏が率いるシンキングマシンズが、新しいAIモデル「インクリング2スモール」を発表しました。",
-    "全部で5940億ものパラメーターを持つ大きなモデルで、長時間の作業をひとりでこなす能力が売りだそうです。",
-    "重みは来週、外部の安全性評価を終えてから、オープンライセンス（Apache 2.0）での公開が予定されています。"
-   ]
+   }
   },
   {
    "label": "トヨタ「トヨタロボティクス」新設へ",
@@ -158,18 +158,18 @@
      "show": "トヨタの工場の知恵がロボットになるなんて、なんだかワクワクするね。"
     }
    ],
+   "details": [
+    "ロボット事業の新組織「トヨタロボティクス」を、2027年1月1日に全社直轄組織として新設すると発表しました。",
+    "社内に散らばっていたロボットの人材と知見を集めて、事業の柱に育てる狙いだそうです。",
+    "2028年から2040年にかけて、グループと仕入先あわせて40万台規模のロボット導入を見込んでいます。"
+   ],
    "link": {
     "url": "https://response.jp/article/2026/11/05/418642.html",
     "title": "トヨタ自動車が組織改正、「トヨタロボティクス」を新設---実用化を加速し事業の柱に",
     "site": "response.jp",
     "description": "トヨタ自動車は11月5日、2027年1月1日付の組織改正を発表した。全社直轄組織「トヨタロボティクス」を新設し、ロボットの実用化と事業化を加速する。",
     "image": "thumbs/2026-11-09/04.jpg"
-   },
-   "details": [
-    "ロボット事業の新組織「トヨタロボティクス」を、2027年1月1日に全社直轄組織として新設すると発表しました。",
-    "社内に散らばっていたロボットの人材と知見を集めて、事業の柱に育てる狙いだそうです。",
-    "2028年から2040年にかけて、グループと仕入先あわせて40万台規模のロボット導入を見込んでいます。"
-   ]
+   }
   },
   {
    "label": "フジテレビ、ドラマ制作に生成AI",
@@ -213,18 +213,18 @@
      "show": "それでは、また明日。マルラジオでした。"
     }
    ],
+   "details": [
+    "フジテレビが、ドラマ制作に生成AIを使う実験場「AI Sandbox」を設置しました。",
+    "放送中の『救命病棟24時』では、爆発事故の空撮映像をAIが生成したそうです。",
+    "一部の工程では作業工数を最大で70〜80パーセント削減でき、2027年10月をめどに制作するすべてのドラマで、場面に応じてAIを使える体制を目指すそうです。"
+   ],
    "link": {
     "url": "https://www.watch.impress.co.jp/docs/news/2154002.html",
     "title": "フジテレビ、ドラマ制作に生成AIを積極導入　27年には全ドラマ対応へ",
     "site": "watch.impress.co.jp",
     "description": "フジテレビジョンは5日、江東区青海の湾岸スタジオにAI活用の実験場「AI Sandbox」を設置し、実写ドラマ番組制作における生成AIの活用を進めていると発表した。",
     "image": "thumbs/2026-11-09/05.jpg"
-   },
-   "details": [
-    "フジテレビが、ドラマ制作に生成AIを使う実験場「AI Sandbox」を設置しました。",
-    "放送中の『救命病棟24時』では、爆発事故の空撮映像をAIが生成したそうです。",
-    "一部の工程では作業工数を最大で70〜80パーセント削減でき、2027年10月をめどに制作するすべてのドラマで、場面に応じてAIを使える体制を目指すそうです。"
-   ]
+   }
   }
  ],
  "closing": [],
@@ -233,157 +233,183 @@
    "show": "おはようございます、マルラジオです。今日は11月9日、月曜日。朝の放送です。",
    "start": 0.0,
    "end": 8.875,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "今日のメインキャスターは楓です。よろしくお願いしますね。",
    "start": 8.875,
    "end": 13.632,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "まずは日野市の天気から。今日は一日雨で、最高気温は13度。傘が手放せない一日になりそうです。",
    "start": 13.632,
    "end": 23.221,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "明日10日は、朝は雨が残りますが、昼前から曇り、のち晴れの見込み。最高気温は13度で、今日と同じくらいの寒さです。",
    "start": 23.221,
    "end": 34.795,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "雨の月曜日かぁ。ゆうくん、今日はバスで行った方がいいかもね。",
    "start": 34.795,
    "end": 39.573,
-   "speaker": "amane"
+   "speaker": "amane",
+   "motion": "c"
   },
   {
    "show": "では、今日のAIニュースです。",
    "start": 39.573,
    "end": 42.315,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "一つ目。今日と明日、ソウルで「NVIDIA AI Day Seoul 2026」が開かれています。",
    "start": 42.315,
    "end": 53.344,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "サムスン電子やSKハイニックス、LGエレクトロニクスなど、韓国の大手企業が登壇して、エージェントAIやフィジカルAIの事例を紹介するそうです。",
    "start": 53.344,
    "end": 66.283,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "参加者はおよそ2000人の見込みです。初日は基調講演と15の技術セッションが予定されています。",
    "start": 66.283,
    "end": 73.28,
-   "speaker": "makoto"
+   "speaker": "makoto",
+   "motion": "a"
   },
   {
    "show": "二つ目。Anthropicの新規株式公開、いわゆるIPOに向けた動きです。",
    "start": 73.28,
    "end": 80.16,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "今週から投資家への説明、いわゆるロードショーが始まると報じられています。ただ、先週のAI株の急落を受けて、想定されていた1兆5000億ドルという企業価値には疑問の声も出ています。",
    "start": 80.16,
    "end": 96.747,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "1兆5000億ドルって、円にしたら200兆円超えだよ。すごい金額だねぇ。",
    "start": 96.747,
    "end": 102.432,
-   "speaker": "amane"
+   "speaker": "amane",
+   "motion": "b"
   },
   {
    "show": "三つ目。ミラ・ムラティさんが率いるシンキングマシンズが、新しいAIモデル「インクリング2スモール」を発表しました。",
    "start": 102.432,
    "end": 113.216,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "全部で5940億ものパラメーターを持つ大きなモデルで、長時間の作業をひとりでこなす能力が売りだそうです。",
    "start": 113.216,
    "end": 122.443,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "重みは来週、オープンライセンスでの公開が予定されています。まず外部の安全性評価を終えてから、とのことです。",
    "start": 122.443,
    "end": 130.528,
-   "speaker": "makoto"
+   "speaker": "makoto",
+   "motion": "a"
   },
   {
    "show": "四つ目。トヨタが、ロボット事業の新組織「トヨタロボティクス」を来年1月に新設すると発表しました。",
    "start": 130.528,
    "end": 140.64,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "社内に散らばっていたロボットの人材と知見を集めて、事業の柱に育てる狙いだそうです。2028年から2040年にかけて、グループと仕入先あわせて40万台規模のロボット導入を見込んでいます。",
    "start": 140.64,
    "end": 157.739,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "トヨタの工場の知恵がロボットになるなんて、なんだかワクワクするね。",
    "start": 157.739,
    "end": 162.315,
-   "speaker": "amane"
+   "speaker": "amane",
+   "motion": "b"
   },
   {
    "show": "最後に軽い話題を。フジテレビが、ドラマ制作に生成AIを使う実験場「AI Sandbox」を設置しました。",
    "start": 162.315,
    "end": 174.187,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "放送中の「救命病棟24時」では、爆発事故の空撮映像をAIが生成したそうです。一部の工程では、作業工数を最大で70から80パーセント削減できたとのことです。",
    "start": 174.187,
    "end": 191.317,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "2027年10月をめどに、制作するすべてのドラマで、場面に応じてAIを使える体制を目指すそうです。",
    "start": 191.317,
    "end": 199.68,
-   "speaker": "makoto"
+   "speaker": "makoto",
+   "motion": "a"
   },
   {
    "show": "今日のマルラジオはここまで。メインは楓、あまねとまことが一言ずつ添えてくれました。",
    "start": 199.68,
    "end": 206.56,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   },
   {
    "show": "雨の月曜日、傘を忘れずにね。いってらっしゃい。",
    "start": 206.56,
    "end": 210.763,
-   "speaker": "amane"
+   "speaker": "amane",
+   "motion": "b"
   },
   {
    "show": "明日のメインはまことです。正確にお届けできるよう、準備いたします。",
    "start": 210.763,
    "end": 216.064,
-   "speaker": "makoto"
+   "speaker": "makoto",
+   "motion": "a"
   },
   {
    "show": "ふふ、明日はまことが読むのね。楽しみにしていてちょうだい。",
    "start": 216.064,
    "end": 221.451,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "c"
   },
   {
    "show": "それでは、また明日。マルラジオでした。",
    "start": 221.451,
    "end": 225.163,
-   "speaker": "kaede"
+   "speaker": "kaede",
+   "motion": "a"
   }
  ],
  "segments": [
@@ -423,6 +449,6 @@
    "end": 225.163
   }
  ],
- "made_at": "2026-11-14T15:40:19+09:00",
+ "made_at": "2026-11-15T15:54:21+09:00",
  "highlight": 0
 }

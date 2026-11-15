@@ -19,7 +19,9 @@ def line(i):
     return {'say': s.get('read') or s['show'], 'show': s['show']}
 def timed(i):
     s = sens[i]
-    return {'show': s['show'], 'start': tims[i]['start'], 'end': tims[i]['end'], 'speaker': MP[s['who']]}
+    d = {'show': s['show'], 'start': tims[i]['start'], 'end': tims[i]['end'], 'speaker': MP[s['who']]}
+    if s.get('motion'): d['motion'] = s['motion']
+    return d
 topics = meta['topics']
 segs = {g['key']: g['line'] for g in meta['segments']}
 n = len(sens)
