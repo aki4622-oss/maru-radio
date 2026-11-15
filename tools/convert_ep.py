@@ -58,14 +58,19 @@ if 'freetalk' in segs:
     pts = {}
     pf = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'freetalk-points.json')
     if os.path.exists(pf): pts = json.load(open(pf, encoding='utf-8'))
+    fentry = pts.get(DATE, [])
+    if isinstance(fentry, dict): fpts, fabout = fentry.get('points', []), fentry.get('about')
+    else: fpts, fabout = fentry, None
+    def ftcard(flines):
+        c = {'label': '姉妹トーク', 'freetalk': True, 'points': fpts, 'url': '', 'lines': flines}
+        if fabout is not None: c['about'] = fabout
+        return c
     if mid_closing is not None:
-        cards.append({'label': '姉妹トーク', 'freetalk': True, 'points': pts.get(DATE, []),
-                      'url': '', 'lines': [line(i) for i in range(f, n)]})
+        cards.append(ftcard([line(i) for i in range(f, n)]))
     else:
         sign = next((i for i in range(f, n) if '今日のマルラジオはここまで' in sens[i]['show']), None)
         if sign is not None:
-            cards.append({'label': '姉妹トーク', 'freetalk': True, 'points': pts.get(DATE, []),
-                          'url': '', 'lines': [line(i) for i in range(f, sign)]})
+            cards.append(ftcard([line(i) for i in range(f, sign)]))
             rest_start = sign
 closing = [line(i) for i in range(mid_closing[0], mid_closing[1])] if mid_closing else [line(i) for i in range(rest_start, n)]
 # segments (player parts) from timed boundaries

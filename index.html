@@ -143,6 +143,9 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #panel a.pick span{display:block;padding:12px 20px;font:700 28px var(--jp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #panel a.pick span::before{content:"PICK";font:700 22px var(--mono);color:var(--yellow);letter-spacing:3px;margin-right:16px}
 #panel a.pick i{font-style:normal;color:var(--yellow);margin-left:10px;opacity:0;transition:opacity .2s}
+#panel .ftjump{display:block;margin-top:14px;background:none;border:1px solid var(--line);border-radius:999px;color:var(--text);padding:8px 16px;font:600 15px var(--jp);cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#panel .ftjump i{font-style:normal;color:var(--yellow);margin-left:8px}
+#panel .ftjump:hover{border-color:var(--yellow);color:var(--yellow)}
 #panel a.pick:hover{border-color:var(--yellow)}
 #panel a.pick:hover i{opacity:1}
 .enter{animation:slide .45s ease-out}
@@ -831,7 +834,7 @@ function partHtml(p) {
   return `<div class="tag">${n.freetalk ? "おまけトーク" : `NEWS ${String(p.index + 1).padStart(2, "0")} / ${String(ep.news.length).padStart(2, "0")}`}</div>
     <h2>${headCopy(n.label, esc(n.label))}</h2><ul>${n.points.map((x, j) =>
       `<li class="more" data-point="${j}" tabindex="0" aria-expanded="false" style="animation-delay:${0.35 + j * 0.45}s"><span class="pt">${esc(x)}</span><div class="detail"><div>${
-        n.details?.[j] ? `<p>${esc(n.details[j])}</p>` : `<p class="none">${tr("none")}</p>`}</div></div></li>`).join("")}</ul>`;
+        n.details?.[j] ? `<p>${esc(n.details[j])}</p>` : `<p class="none">${tr("none")}</p>`}</div></div></li>`).join("")}</ul>${n.freetalk && n.about != null ? `<button class="ftjump" data-seg="${newsSeg(n.about)}">話した記事「${esc(ep.news[n.about].label)}」へ<i>→</i></button>` : ""}`;
 }
 // the closing shows the image of today's highlight (the script's "highlight": which news the closing picks), linked to it
 function pickHtml() {
