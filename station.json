@@ -31,5 +31,5 @@
   "dir": "audio",
   "keep_days": 30
  },
- "weather": false
+ "weather": true
 }
