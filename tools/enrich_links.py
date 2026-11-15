@@ -28,7 +28,7 @@ for f in sorted(glob.glob(f'{ROOT}/episodes/*-ja.json')):
         if card.get('freetalk'):
             card['link'] = {'title': card['label'], 'image': 'assets/freetalk.jpg'}
         elif card['label'].startswith('ピックアップ'):
-            lk = {'title': card['label'], 'image': f"assets/pickup-{MAIN[date]}.jpg"}
+            lk = {'title': card['label'], 'image': f"assets/pickup-{ep.get('main') or MAIN[date]}.jpg"}
             if PLINKS.get(date): lk.update(PLINKS[date])
             card['link'] = lk
             pickup_idx = i

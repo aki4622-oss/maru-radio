@@ -35,8 +35,11 @@ for ti, t in enumerate(topics[1:]):
     cards.append({'label': t['title'], 'points': t.get('bullets', []),
                   'url': t.get('url', ''), 'lines': [line(i) for i in range(t['from'], end + 1)]})
 rest_start = topics[-1]['to'] + 1
+main_caster = None
+mid_closing = None  # 新形式（締めの挨拶の後におまけトラック）用: (締め開始行, おまけ開始行)
 if 'pickup' in segs:
     p = segs['pickup']; f = segs.get('freetalk', n)
+    main_caster = MP[sens[p]['who']]
     intro = sens[p]['show']
     label = 'ピックアップ'
     if '持参トピックです。' in intro:
@@ -45,30 +48,40 @@ if 'pickup' in segs:
     ppts = {}
     ppf = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pickup-points.json')
     if os.path.exists(ppf): ppts = json.load(open(ppf, encoding='utf-8'))
-    cards.append({'label': label, 'points': ppts.get(DATE, []), 'url': '', 'lines': [line(i) for i in range(p, f)]})
+    sign_pre = next((i for i in range(p, f) if '今日のマルラジオはここまで' in sens[i]['show']), None) if 'freetalk' in segs else None
+    pend = sign_pre if sign_pre is not None else f
+    cards.append({'label': label, 'points': ppts.get(DATE, []), 'url': '', 'lines': [line(i) for i in range(p, pend)]})
     rest_start = f
+    if sign_pre is not None: mid_closing = (sign_pre, f)
 if 'freetalk' in segs:
     f = segs['freetalk']
-    sign = next((i for i in range(f, n) if '今日のマルラジオはここまで' in sens[i]['show']), None)
-    if sign is not None:
-        pts = {}
-        pf = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'freetalk-points.json')
-        if os.path.exists(pf): pts = json.load(open(pf, encoding='utf-8'))
+    pts = {}
+    pf = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'freetalk-points.json')
+    if os.path.exists(pf): pts = json.load(open(pf, encoding='utf-8'))
+    if mid_closing is not None:
         cards.append({'label': '姉妹トーク', 'freetalk': True, 'points': pts.get(DATE, []),
-                      'url': '', 'lines': [line(i) for i in range(f, sign)]})
-        rest_start = sign
-closing = [line(i) for i in range(rest_start, n)]
+                      'url': '', 'lines': [line(i) for i in range(f, n)]})
+    else:
+        sign = next((i for i in range(f, n) if '今日のマルラジオはここまで' in sens[i]['show']), None)
+        if sign is not None:
+            cards.append({'label': '姉妹トーク', 'freetalk': True, 'points': pts.get(DATE, []),
+                          'url': '', 'lines': [line(i) for i in range(f, sign)]})
+            rest_start = sign
+closing = [line(i) for i in range(mid_closing[0], mid_closing[1])] if mid_closing else [line(i) for i in range(rest_start, n)]
 # segments (player parts) from timed boundaries
 def tstart(i): return tims[i]['start']
 parts = [{'kind': 'opening', 'start': 0.0, 'end': tstart(news_starts)}]
 idx = news_starts
 for ci, c in enumerate(cards):
+    if mid_closing is not None and c.get('freetalk'):
+        parts.append({'kind': 'closing', 'start': tstart(mid_closing[0]), 'end': tstart(mid_closing[1])})
+        idx += mid_closing[1] - mid_closing[0]
     cnt = len(c['lines'])
     parts.append({'kind': 'news', 'index': ci, 'start': tstart(idx), 'end': tstart(idx + cnt) if idx + cnt < n else tims[-1]['end']})
     idx += cnt
-if rest_start < n:
+if rest_start < n and mid_closing is None:
     parts.append({'kind': 'closing', 'start': tstart(rest_start), 'end': tims[-1]['end']})
-ep = {'format': 'monoradio/news-1', 'title': f"{meta['date_label']}の放送", 'date': DATE, 'lang': 'ja',
+ep = {'format': 'monoradio/news-1', 'title': f"{meta['date_label']}の放送", 'date': DATE, 'lang': 'ja', 'main': main_caster,
       'seconds': tims[-1]['end'], 'opening': opening, 'news': cards, 'closing': closing,
       'lines_timed': [timed(i) for i in range(n)], 'segments': parts,
       'made_at': __import__('datetime').datetime.now(__import__('datetime').timezone(__import__('datetime').timedelta(hours=9))).isoformat(timespec='seconds')}
