@@ -143,6 +143,10 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #panel a.pick span{display:block;padding:12px 20px;font:700 28px var(--jp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #panel a.pick span::before{content:"PICK";font:700 22px var(--mono);color:var(--yellow);letter-spacing:3px;margin-right:16px}
 #panel a.pick i{font-style:normal;color:var(--yellow);margin-left:10px;opacity:0;transition:opacity .2s}
+#panel span.pick{display:block;margin-top:34px;border:1px solid var(--line);border-radius:12px;overflow:hidden;color:var(--text)}
+#panel span.pick img{display:block;width:100%;aspect-ratio:1.91;object-fit:cover}
+#panel span.pick span{display:block;padding:12px 20px;font:700 28px var(--jp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#panel span.pick.end span::before{content:"END";font:700 22px var(--mono);color:var(--yellow);letter-spacing:3px;margin-right:16px}
 #panel .ftjump{display:block;margin-top:14px;background:none;border:1px solid var(--line);border-radius:999px;color:var(--text);padding:8px 16px;font:600 15px var(--jp);cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #panel .ftjump i{font-style:normal;color:var(--yellow);margin-left:8px}
 #panel .ftjump:hover{border-color:var(--yellow);color:var(--yellow)}
@@ -385,6 +389,7 @@ html.v #panel ol li{font-size:38px}
 html.v #panel .big{font-size:96px;margin-bottom:20px}
 html.v #panel .date{margin-bottom:34px}
 html.v #panel a.pick img{aspect-ratio:2.4}
+html.v #panel span.pick img{aspect-ratio:2.4}
 /* a news item: the picture first (the card, image on top), then what the story is */
 html.v #card{left:48px;top:256px;width:984px;height:560px;flex-direction:column;gap:12px}
 html.v #card img{width:948px;height:440px}
@@ -838,6 +843,7 @@ function partHtml(p) {
 }
 // the closing shows the image of today's highlight (the script's "highlight": which news the closing picks), linked to it
 function pickHtml() {
+  if (ep.endcard) return `<span class="pick end"><img src="${esc(ep.endcard)}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><span>${esc(ep.news[ep.highlight]?.label || "")}</span></span>`;
   const n = ep.news[ep.highlight], l = n?.link;
   if (!l?.image || l.status === 404 || l.status === 410) return "";
   const inner = `<img src="${esc(l.image)}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><span>${esc(n.label)}<i>↗</i></span>`;
