@@ -10,6 +10,9 @@ from urllib.parse import urlparse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = sys.argv[1] if len(sys.argv) > 1 else '/home/hatch/workspace/your_files/maru-radio/ogp-cache.json'
 cache = json.load(open(CACHE, encoding='utf-8')) if os.path.exists(CACHE) else {}
+DET = {}
+_dp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'details.json')
+if os.path.exists(_dp): DET = json.load(open(_dp, encoding='utf-8'))
 MAIN = {'2026-11-06': 'amane', '2026-11-09': 'kaede', '2026-11-10': 'makoto',
         '2026-11-11': 'amane', '2026-11-12': 'kaede', '2026-11-13': 'makoto'}
 for f in sorted(glob.glob(f'{ROOT}/episodes/*-ja.json')):
@@ -17,6 +20,8 @@ for f in sorted(glob.glob(f'{ROOT}/episodes/*-ja.json')):
     date = ep['date']
     pickup_idx = None
     for i, card in enumerate(ep['news']):
+        det = DET.get(date, {}).get(str(i))
+        if det: card['details'] = det
         if card.get('freetalk'):
             card['link'] = {'title': card['label'], 'image': 'assets/freetalk.jpg'}
         elif card['label'].startswith('ピックアップ'):

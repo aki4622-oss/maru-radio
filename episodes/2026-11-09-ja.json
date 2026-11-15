@@ -59,7 +59,12 @@
     "site": "en.edaily.co.kr",
     "description": "NVIDIA will host “NVIDIA AI Day Seoul 2026,” an artificial intelligence (AI) developer event, in Seoul for two days starting on the 9th.",
     "image": "thumbs/2026-11-09/01.jpg"
-   }
+   },
+   "details": [
+    "ソウル・COEXで9〜10日に開かれる「NVIDIA AI Day Seoul 2026」です。",
+    "サムスン電子やSKハイニックス、LGエレクトロニクスなど韓国の大手企業が登壇し、エージェントAIやフィジカルAIの事例を紹介するそうです。",
+    "参加者はおよそ2000人の見込みで、初日は基調講演と15の技術セッションが予定されています。"
+   ]
   },
   {
    "label": "Anthropic、IPOロードショーへ",
@@ -89,7 +94,12 @@
     "site": "fourweekmba.com",
     "description": "CoreWeave reports third-quarter results on Tuesday, November 10, Nebius on Thursday, November 12, and OpenAI holds a live cyber keynote the same Thursday.",
     "image": "thumbs/2026-11-09/02.jpg"
-   }
+   },
+   "details": [
+    "Anthropicの新規株式公開（IPO）に向け、今週から投資家への説明（ロードショー）が始まると報じられています。",
+    "想定されていた1兆5000億ドルという企業価値には、疑問の声も出ています。",
+    "先週のAI株の急落が、影を落としています。"
+   ]
   },
   {
    "label": "シンキングマシンズ「インクリング2」発表",
@@ -119,7 +129,12 @@
     "site": "venturebeat.com",
     "description": "Thinking Machines Lab, the AI startup led by former OpenAI chief technology officer Mira Murati, introduced Inkling 2 Small on November 5, giving developers a new option for agents that write software, interpret images, analyze financial documents and learn company-specific workflows.",
     "image": "thumbs/2026-11-09/03.jpg"
-   }
+   },
+   "details": [
+    "ミラ・ムラティ氏が率いるシンキングマシンズが、新しいAIモデル「インクリング2スモール」を発表しました。",
+    "全部で5940億ものパラメーターを持つ大きなモデルで、長時間の作業をひとりでこなす能力が売りだそうです。",
+    "重みは来週、外部の安全性評価を終えてから、オープンライセンス（Apache 2.0）での公開が予定されています。"
+   ]
   },
   {
    "label": "トヨタ「トヨタロボティクス」新設へ",
@@ -149,7 +164,12 @@
     "site": "response.jp",
     "description": "トヨタ自動車は11月5日、2027年1月1日付の組織改正を発表した。全社直轄組織「トヨタロボティクス」を新設し、ロボットの実用化と事業化を加速する。",
     "image": "thumbs/2026-11-09/04.jpg"
-   }
+   },
+   "details": [
+    "ロボット事業の新組織「トヨタロボティクス」を、2027年1月1日に全社直轄組織として新設すると発表しました。",
+    "社内に散らばっていたロボットの人材と知見を集めて、事業の柱に育てる狙いだそうです。",
+    "2028年から2040年にかけて、グループと仕入先あわせて40万台規模のロボット導入を見込んでいます。"
+   ]
   },
   {
    "label": "フジテレビ、ドラマ制作に生成AI",
@@ -199,7 +219,12 @@
     "site": "watch.impress.co.jp",
     "description": "フジテレビジョンは5日、江東区青海の湾岸スタジオにAI活用の実験場「AI Sandbox」を設置し、実写ドラマ番組制作における生成AIの活用を進めていると発表した。",
     "image": "thumbs/2026-11-09/05.jpg"
-   }
+   },
+   "details": [
+    "フジテレビが、ドラマ制作に生成AIを使う実験場「AI Sandbox」を設置しました。",
+    "放送中の『救命病棟24時』では、爆発事故の空撮映像をAIが生成したそうです。",
+    "一部の工程では作業工数を最大で70〜80パーセント削減でき、2027年10月をめどに制作するすべてのドラマで、場面に応じてAIを使える体制を目指すそうです。"
+   ]
   }
  ],
  "closing": [],

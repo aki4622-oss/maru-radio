@@ -59,7 +59,12 @@
     "site": "news.web.nhk",
     "description": "6日の東京株式市場、アメリカの中間選挙で民主党が大勝したことを受けてAI・半導体業界の先行きへの懸念が広がり、日経平均株価は3600円余り下落し、値下がり幅は終値として過去3番目でした。",
     "image": "thumbs/2026-11-06/01.jpg"
-   }
+   },
+   "details": [
+    "日経平均株価は一時4000円を超える値下がりとなり、5万7000円台に届く場面もありました。",
+    "終値としての下げ幅は過去3番目で、節目の6万円を割り込みました。",
+    "AI関連への投資が減速するのではないか、という懸念が強まったことが背景にあります。"
+   ]
   },
   {
    "label": "OpenAI、セキュリティ特化「GPT-6 Cyber」発表",
@@ -93,7 +98,12 @@
     "site": "openai.com",
     "description": "We're introducing GPT‑6 Cyber, a major leap in security research: more capable at finding and fixing vulnerabilities, and far more reliable staying within the boundaries researchers set.",
     "image": "thumbs/2026-11-06/02.jpg"
-   }
+   },
+   "details": [
+    "OpenAIが、サイバーセキュリティに特化したAIモデル「GPT-6 Cyber」を発表しました。",
+    "ブラウザ「Firefox」の、まだ知られていなかった弱点（脆弱性）を81件見つけたそうです。",
+    "提供は、防御側の承認された利用者に限られるとのことです。"
+   ]
   },
   {
    "label": "Meta「Muse」に音声対話機能",
@@ -123,7 +133,12 @@
     "site": "about.fb.com",
     "description": "We're rolling out voice and expressive avatars in the Muse app, giving you a new way to interact with your Muse.",
     "image": "thumbs/2026-11-06/03.jpg"
-   }
+   },
+   "details": [
+    "MetaのAIエージェント「Muse」に、リアルタイムの音声対話機能が追加されました。",
+    "会話に合わせて表情や身ぶりを変えるアバターと話せるそうです。",
+    "まずアメリカで提供が始まります。"
+   ]
   },
   {
    "label": "Claudeに家計管理「Personal Finance」",
@@ -153,7 +168,12 @@
     "site": "claude.com",
     "description": "Ask Claude about your money and get straight answers from the accounts you connect.",
     "image": "thumbs/2026-11-06/04.jpg"
-   }
+   },
+   "details": [
+    "Anthropicの「Claude」に、銀行口座と連携する家計管理機能「Personal Finance」が発表されました。",
+    "お金の状況を言葉で質問できる機能です。",
+    "アメリカでベータ提供が始まります。"
+   ]
   },
   {
    "label": "ソニー、初代ウォークマンのヘッドホンを復刻",
@@ -199,7 +219,12 @@
     "site": "av.watch.impress.co.jp",
     "description": "ソニーは、1979年に発売した初代ウォークマン「TPS-L2」にも付属したヘッドフォン「MDR-3」シリーズを現代のライフスタイルに合わせて再現したUSB-Cヘッドフォン「MDR-3R」を11月20日に発売する。価格はオープンプライスで、市場想定価格は8,000円前後。",
     "image": "thumbs/2026-11-06/05.jpg"
-   }
+   },
+   "details": [
+    "ソニーが、初代ウォークマンの付属品だった有線ヘッドホン「MDR-3R」を復刻すると発表しました。",
+    "昭和レトロなデザインそのままに、USB-C化などの現代の仕様で蘇るそうです。",
+    "翌回のメインキャスターは楓が務める予定です。"
+   ]
   }
  ],
  "closing": [],
