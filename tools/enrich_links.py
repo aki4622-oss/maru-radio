@@ -13,6 +13,9 @@ cache = json.load(open(CACHE, encoding='utf-8')) if os.path.exists(CACHE) else {
 DET = {}
 _dp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'details.json')
 if os.path.exists(_dp): DET = json.load(open(_dp, encoding='utf-8'))
+PLINKS = {}
+_pp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pickup-links.json')
+if os.path.exists(_pp): PLINKS = json.load(open(_pp, encoding='utf-8'))
 MAIN = {'2026-11-06': 'amane', '2026-11-09': 'kaede', '2026-11-10': 'makoto',
         '2026-11-11': 'amane', '2026-11-12': 'kaede', '2026-11-13': 'makoto'}
 for f in sorted(glob.glob(f'{ROOT}/episodes/*-ja.json')):
@@ -25,7 +28,9 @@ for f in sorted(glob.glob(f'{ROOT}/episodes/*-ja.json')):
         if card.get('freetalk'):
             card['link'] = {'title': card['label'], 'image': 'assets/freetalk.jpg'}
         elif card['label'].startswith('ピックアップ'):
-            card['link'] = {'title': card['label'], 'image': f"assets/pickup-{MAIN[date]}.jpg"}
+            lk = {'title': card['label'], 'image': f"assets/pickup-{MAIN[date]}.jpg"}
+            if PLINKS.get(date): lk.update(PLINKS[date])
+            card['link'] = lk
             pickup_idx = i
         else:
             url = card.get('url', '')

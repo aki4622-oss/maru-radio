@@ -40,7 +40,10 @@ if 'pickup' in segs:
     if '持参トピックです。' in intro:
         tail = intro.split('持参トピックです。', 1)[1].split('。')[0]
         if tail: label = 'ピックアップ：' + tail
-    cards.append({'label': label, 'points': [], 'url': '', 'lines': [line(i) for i in range(p, f)]})
+    ppts = {}
+    ppf = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pickup-points.json')
+    if os.path.exists(ppf): ppts = json.load(open(ppf, encoding='utf-8'))
+    cards.append({'label': label, 'points': ppts.get(DATE, []), 'url': '', 'lines': [line(i) for i in range(p, f)]})
     rest_start = f
 if 'freetalk' in segs:
     f = segs['freetalk']
