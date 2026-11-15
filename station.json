@@ -22,9 +22,7 @@
   "note": "AIで生成したキャラクターです"
  },
  "credits": [
-  "VOICEVOX：春日部つむぎ",
-  "VOICEVOX：四国めたん",
-  "VOICEVOX：もち子さん"
+  "音声合成：Irodori-TTS"
  ],
  "caster": "",
  "audio": {
