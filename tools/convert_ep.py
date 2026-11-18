@@ -94,7 +94,8 @@ ep = {'format': 'monoradio/news-1', 'title': f"{meta['date_label']}の放送", '
       'lines_timed': [timed(i) for i in range(n)], 'segments': parts,
       'made_at': __import__('datetime').datetime.now(__import__('datetime').timezone(__import__('datetime').timedelta(hours=9))).isoformat(timespec='seconds')}
 if wline is not None: ep['weather'] = {'label': topics[0]['title'], 'points': topics[0].get('bullets', []), 'lines': [line(i) for i in range(wline, news_starts)]}
-if os.path.exists(f'{ROOT}/thumbs/{DATE}/end.jpg'): ep['endcard'] = f'thumbs/{DATE}/end.jpg'
+if os.path.exists(f'{ROOT}/assets/endcard.jpg'): ep['endcard'] = 'assets/endcard.jpg'
+elif os.path.exists(f'{ROOT}/thumbs/{DATE}/end.jpg'): ep['endcard'] = f'thumbs/{DATE}/end.jpg'
 out = f'{ROOT}/episodes/{DATE}-ja.json'
 json.dump(ep, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print(f"{DATE}: opening {len(opening)} / cards {len(cards)} / closing {len(closing)} / total {n} / {ep['seconds']:.1f}s -> {out}")
