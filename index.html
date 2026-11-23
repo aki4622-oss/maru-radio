@@ -992,7 +992,7 @@ function showCard(link) {
 }
 $("card").addEventListener("click", () => audio.pause());
 
-// ---------- いいね (news cards only: not the weather, the pickup or the sisters' talk) ----------
+// ---------- いいね (news and pickup cards: not the weather or the sisters' talk) ----------
 // a press posts the date, the article title and the tags Maru put on the article to the
 // reception form in the background (no page change); the intake on the production side
 // reads the form answers into the tag manager. One like per article per browser.
@@ -1003,7 +1003,7 @@ const likedKeys = () => { try { return JSON.parse(localStorage.getItem("maru-lik
 function setLike(seg) {
   const btn = $("likeBtn");
   const item = seg && seg.kind === "news" ? ep.news[seg.index] : null;
-  const ok = !!item && !item.freetalk && seg.index !== ep.highlight && !(item.label || "").startsWith("ピックアップ");
+  const ok = !!item && !item.freetalk;
   likeCtx = ok ? { date: ep.date, title: item.link?.title || item.label || "", tags: Array.isArray(item.tags) ? item.tags : [] } : null;
   btn.hidden = !ok;
   if (!ok) return;
@@ -1207,7 +1207,7 @@ async function load(date, lang = LANG, at = 0) {
   // sources: the briefing's own URL (flagged when it does not open), and the related article the card shows instead
   const srcOf = n => n.source_link || (n.link && !n.link.found_by ? n.link : n.url ? { url: n.url } : null);
   const likeBtnHtml = (n, j) => {
-    if (n.freetalk || j === ep.highlight || (n.label || "").startsWith("ピックアップ") || !Array.isArray(n.tags)) return "";
+    if (n.freetalk || !Array.isArray(n.tags)) return "";
     const title = n.link?.title || n.label || "";
     const on = likedKeys().includes(ep.date + "|" + title);
     return `<button type="button" class="like artlike${on ? " on" : ""}" data-key="${esc(ep.date + "|" + title)}" data-date="${esc(ep.date)}" data-title="${esc(title)}" data-tags="${esc(n.tags.join(", "))}">${tr(on ? "liked" : "like")}</button>`;

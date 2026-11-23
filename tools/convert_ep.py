@@ -49,9 +49,12 @@ if 'pickup' in segs:
     ppts = {}
     ppf = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pickup-points.json')
     if os.path.exists(ppf): ppts = json.load(open(ppf, encoding='utf-8'))
+    ptags = {}
+    ptf = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pickup-tags.json')
+    if os.path.exists(ptf): ptags = json.load(open(ptf, encoding='utf-8'))
     sign_pre = next((i for i in range(p, f) if '今日のマルラジオはここまで' in sens[i]['show']), None) if 'freetalk' in segs else None
     pend = sign_pre if sign_pre is not None else f
-    cards.append({'label': label, 'points': ppts.get(DATE, []), 'url': '', 'lines': [line(i) for i in range(p, pend)]})
+    cards.append({'label': label, 'points': ppts.get(DATE, []), 'url': '', 'tags': ptags.get(DATE, []), 'lines': [line(i) for i in range(p, pend)]})
     rest_start = f
     if sign_pre is not None: mid_closing = (sign_pre, f)
 if 'freetalk' in segs:
