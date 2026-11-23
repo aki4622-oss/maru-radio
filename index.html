@@ -224,6 +224,9 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #card .like:hover{border-color:var(--red);color:var(--red)}
 #card .like.on{color:var(--red);border-color:var(--red)}
 #card .like[hidden]{display:none}
+#links .like{font:700 15px var(--mono);letter-spacing:1px;color:var(--text);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer;margin-top:10px}
+#links .like:hover{border-color:var(--red);color:var(--red)}
+#links .like.on{color:var(--red);border-color:var(--red)}
 #cam img,#cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:6px}
 #cam video{opacity:0;transition:opacity .16s linear}
 #cam video.on{opacity:1}
@@ -1023,6 +1026,23 @@ $("likeBtn").addEventListener("click", e => {
   const btn = $("likeBtn");
   btn.classList.add("on"); btn.textContent = tr("liked");
 });
+// the same like, on each news article card in the reading list below the player
+$("links").addEventListener("click", e => {
+  const b = e.target.closest(".artlike");
+  if (!b) return;
+  e.preventDefault();
+  const key = b.dataset.key, keys = likedKeys();
+  if (keys.includes(key)) return;
+  const body = new URLSearchParams();
+  body.set(LIKE_ENTRY.date, b.dataset.date);
+  body.set(LIKE_ENTRY.title, b.dataset.title);
+  body.set(LIKE_ENTRY.tags, b.dataset.tags);
+  fetch(LIKE_URL, { method: "POST", mode: "no-cors", body }).catch(() => {});
+  keys.push(key);
+  try { localStorage.setItem("maru-likes", JSON.stringify(keys)); } catch {}
+  document.querySelectorAll(".artlike").forEach(x => { if (x.dataset.key === key) { x.classList.add("on"); x.textContent = tr("liked"); } });
+  if (likeCtx && likeCtx.date + "|" + likeCtx.title === key) { const sb = $("likeBtn"); sb.classList.add("on"); sb.textContent = tr("liked"); }
+});
 
 // ---------- the clock: everything follows the audio position ----------
 function tick(now) {
@@ -1186,6 +1206,12 @@ async function load(date, lang = LANG, at = 0) {
   $("scriptText").textContent = [...ep.opening, ...ep.news.flatMap(n => [`\n■ ${n.label}`, ...n.lines]), "", ...ep.closing].map(l => typeof l === "string" ? l : l.show).join("\n");
   // sources: the briefing's own URL (flagged when it does not open), and the related article the card shows instead
   const srcOf = n => n.source_link || (n.link && !n.link.found_by ? n.link : n.url ? { url: n.url } : null);
+  const likeBtnHtml = (n, j) => {
+    if (n.freetalk || j === ep.highlight || (n.label || "").startsWith("ピックアップ") || !Array.isArray(n.tags)) return "";
+    const title = n.link?.title || n.label || "";
+    const on = likedKeys().includes(ep.date + "|" + title);
+    return `<button type="button" class="like artlike${on ? " on" : ""}" data-key="${esc(ep.date + "|" + title)}" data-date="${esc(ep.date)}" data-title="${esc(title)}" data-tags="${esc(n.tags.join(", "))}">${tr(on ? "liked" : "like")}</button>`;
+  };
   const linkLine = (l, label) => { const bad = l.status === 404 || l.status === 410, host = (() => { try { return new URL(l.url).hostname; } catch { return l.url; } })();
     return `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer"><small>${label}${esc(l.site || host)}${bad ? tr("sep") + "⚠ " + tr("notFound")(l.status) : l.title ? tr("sep") + esc(l.title) : ""}</small></a>`; };
   // the news to read: headline (jumps the player there), the points with their details, the sources, the share image
@@ -1198,7 +1224,7 @@ async function load(date, lang = LANG, at = 0) {
     return `<article class="item"><button class="jump" data-seg="${newsSeg(j)}" title="${tr("jump")}"><span class="d">${String(j + 1).padStart(2, "0")}</span><b>${esc(n.label)}</b><i>${mmss(ep.segments[newsSeg(j)]?.start || 0)}</i></button>`
       + (img ? (n.link.url ? `<a class="pic" href="${esc(n.link.url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(n.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></a>` : `<span class="pic"><img src="${esc(n.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></span>`) : "")
       + `<ul class="pts">${n.points.map((x, k) => `<li><b>${esc(x)}</b>${n.details?.[k] ? `<span>${esc(n.details[k])}</span>` : ""}</li>`).join("")}</ul>`
-      + `<div class="srcs">${src && src.url ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
+      + `<div class="srcs">${src && src.url ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div>${likeBtnHtml(n, j)}</article>`;
   }).join("");
   const openSeg = (() => { const w = ep.segments.findIndex(s => s.kind === "weather"); return w >= 0 ? w : ep.segments.findIndex(s => s.kind === "opening"); })();
   const closeSeg = ep.segments.findIndex(s => s.kind === "closing");
@@ -1291,6 +1317,7 @@ function setLang(l) {
   $("camCredit").textContent = st("caster") || ""; $("camCredit").hidden = !st("caster");
   $("scriptSum").textContent = tr("script"); $("talkSum").textContent = tr("talk"); $("talkNote").textContent = tr("talkNote"); $("pastH").textContent = tr("past"); $("cardOpen").textContent = tr("open");
   if (likeCtx) { const on = likedKeys().includes(likeCtx.date + "|" + likeCtx.title); $("likeBtn").textContent = tr(on ? "liked" : "like"); }
+  document.querySelectorAll(".artlike").forEach(x => { x.textContent = tr(x.classList.contains("on") ? "liked" : "like"); });
   $("mutedTxt").textContent = tr("muted"); $("rate").title = $("rate").ariaLabel = tr("rate");
   $("share").querySelector("span").textContent = tr("share");
   $("cname").textContent = st("name"); $("ctag").textContent = st("tagline") || "";
