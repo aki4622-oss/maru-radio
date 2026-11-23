@@ -220,6 +220,10 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #card .desc{display:none;font-size:20px;line-height:1.5;color:#c9ccd6;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #card.noimg .desc{display:-webkit-box}
 #card .open{margin-top:auto;font:700 16px var(--mono);color:var(--muted);letter-spacing:2px}
+#card .like{align-self:flex-start;font:700 16px var(--mono);letter-spacing:1px;color:var(--text);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+#card .like:hover{border-color:var(--red);color:var(--red)}
+#card .like.on{color:var(--red);border-color:var(--red)}
+#card .like[hidden]{display:none}
 #cam img,#cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:6px}
 #cam video{opacity:0;transition:opacity .16s linear}
 #cam video.on{opacity:1}
@@ -465,7 +469,7 @@ html.phone #share span{display:none}
       <div class="onair"><i></i>ON AIR</div>
       <nav id="toc" aria-label="目次"></nav>
       <div id="panel"></div>
-      <a id="card" target="_blank" rel="noopener noreferrer"><img alt="" referrerpolicy="no-referrer"><div class="txt"><div class="site"></div><div class="ttl"></div><div class="desc"></div><div class="open" id="cardOpen">記事をひらく ↗</div></div></a>
+      <a id="card" target="_blank" rel="noopener noreferrer"><img alt="" referrerpolicy="no-referrer"><div class="txt"><div class="site"></div><div class="ttl"></div><div class="desc"></div><button type="button" class="like" id="likeBtn" hidden>♡ いいね</button><div class="open" id="cardOpen">記事をひらく ↗</div></div></a>
       <div id="wx" hidden><div class="body"></div><div id="wxlist" role="listbox"></div></div>
       <div id="cam">
         <div id="casters"></div>
@@ -518,10 +522,12 @@ const UI = {
   ja: { share: "共有", copied: "コピーしました", resumeAt: t => `${t} から続きを再生`, from0: "最初から", heard: "聞いた", partway: t => `途中 ${t}`, rate: "再生速度", wxHere: "現在地", wxCredit: "天気：Open-Meteo（CC BY 4.0）", wxNoGeo: "位置情報が使えませんでした", wxPrompt: "右上から場所を選ぶと、天気が出ます", wxChoose: "場所を選ぶ", wxUseHere: "現在地にする", wxJapan: "日本", wxWorld: "世界", wxHi: "最高", wxLo: "最低", wxRain: "降水", copyHint: "押すとコピー", native: "共有…", copyLink: "リンクをコピー", copyEmbed: "埋め込みコードをコピー", openPage: "ページを開く", news: "ニュース", none: "詳細なし", jump: "この話題へ", bye: "またあした！", related: "関連記事", open: "記事をひらく ↗",
         notFound: c => `リンク先が見つかりませんでした（${c}）`, source: "出典", how: "しくみ", howTitle: "このラジオのしくみ（GitHub）", script: "台本を読む", past: "これまでの放送", talk: "コメント", talkNote: "書きこむには GitHub のアカウントが要ります。コメントは GitHub Discussions に保存され、ここは giscus.app から読みこんでいます。",
         expired: "この回の音声は公開が終わりました（台本は下で読めます）", loading: "読み込み中…", empty: "まだ放送がありません",
+        like: "♡ いいね", liked: "♥ いいねしました",
         muted: "音声オフ・クリックでオン", sep: "・", colon: "：" },
   en: { share: "Share", copied: "Copied", resumeAt: t => `Resume from ${t}`, from0: "Start over", heard: "Heard", partway: t => `Stopped at ${t}`, rate: "Playback speed", wxHere: "Your area", wxCredit: "Weather: Open-Meteo (CC BY 4.0)", wxNoGeo: "Location not available", wxPrompt: "Choose a place (top right) to see its weather", wxChoose: "Choose", wxUseHere: "Use my location", wxJapan: "Japan", wxWorld: "World", wxHi: "H", wxLo: "L", wxRain: "Rain", copyHint: "Click to copy", native: "Share…", copyLink: "Copy link", copyEmbed: "Copy embed code", openPage: "Open the page", news: "News", none: "No details", jump: "Go to this story", bye: "See you tomorrow!", related: "Related", open: "Open article ↗",
         notFound: c => `Link not found (${c})`, source: "Source", how: "About", howTitle: "How this radio works (GitHub)", script: "Read the script", past: "Past episodes", talk: "Comments", talkNote: "You need a GitHub account to comment. Comments are kept in GitHub Discussions, and this part loads from giscus.app.",
         expired: "This episode's audio is no longer available (the script is below)", loading: "Loading…", empty: "No episodes yet",
+        like: "♡ Like", liked: "♥ Liked",
         muted: "Sound off · click to turn on", sep: " · ", colon: ": " },
 };
 let LANG = "ja";
@@ -906,6 +912,7 @@ function showPart(i) {
   fitPanel();
   el.classList.remove("enter"); void el.offsetWidth; el.classList.add("enter");
   showCard(ep.segments[i].kind === "news" ? ep.news[ep.segments[i].index].link : null);
+  setLike(ep.segments[i]);
   document.querySelectorAll("#toc button").forEach(b => b.classList.toggle("cur", +b.dataset.seg === i));
 }
 // jump to a part of the show (a topic)
@@ -981,6 +988,41 @@ function showCard(link) {
   next();
 }
 $("card").addEventListener("click", () => audio.pause());
+
+// ---------- いいね (news cards only: not the weather, the pickup or the sisters' talk) ----------
+// a press posts the date, the article title and the tags Maru put on the article to the
+// reception form in the background (no page change); the intake on the production side
+// reads the form answers into the tag manager. One like per article per browser.
+const LIKE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc5UbUYqEgUPCDp5Op7CjNAn8-Yf0L3s6maRrr2hbZPaFRXvw/formResponse";
+const LIKE_ENTRY = { date: "entry.1408624764", title: "entry.1103102259", tags: "entry.408583635" };
+let likeCtx = null;
+const likedKeys = () => { try { return JSON.parse(localStorage.getItem("maru-likes") || "[]"); } catch { return []; } };
+function setLike(seg) {
+  const btn = $("likeBtn");
+  const item = seg && seg.kind === "news" ? ep.news[seg.index] : null;
+  const ok = !!item && !item.freetalk && seg.index !== ep.highlight && !(item.label || "").startsWith("ピックアップ");
+  likeCtx = ok ? { date: ep.date, title: item.link?.title || item.label || "", tags: Array.isArray(item.tags) ? item.tags : [] } : null;
+  btn.hidden = !ok;
+  if (!ok) return;
+  const on = likedKeys().includes(likeCtx.date + "|" + likeCtx.title);
+  btn.classList.toggle("on", on);
+  btn.textContent = tr(on ? "liked" : "like");
+}
+$("likeBtn").addEventListener("click", e => {
+  e.preventDefault(); e.stopPropagation();
+  if (!likeCtx) return;
+  const key = likeCtx.date + "|" + likeCtx.title, keys = likedKeys();
+  if (keys.includes(key)) return;
+  const body = new URLSearchParams();
+  body.set(LIKE_ENTRY.date, likeCtx.date);
+  body.set(LIKE_ENTRY.title, likeCtx.title);
+  body.set(LIKE_ENTRY.tags, likeCtx.tags.join(", "));
+  fetch(LIKE_URL, { method: "POST", mode: "no-cors", body }).catch(() => {});
+  keys.push(key);
+  try { localStorage.setItem("maru-likes", JSON.stringify(keys)); } catch {}
+  const btn = $("likeBtn");
+  btn.classList.add("on"); btn.textContent = tr("liked");
+});
 
 // ---------- the clock: everything follows the audio position ----------
 function tick(now) {
@@ -1248,6 +1290,7 @@ function setLang(l) {
   $("credits").textContent = [...(st("credits") || []), ...(STATION.weather ? [tr("wxCredit")] : [])].join(" ／ ");
   $("camCredit").textContent = st("caster") || ""; $("camCredit").hidden = !st("caster");
   $("scriptSum").textContent = tr("script"); $("talkSum").textContent = tr("talk"); $("talkNote").textContent = tr("talkNote"); $("pastH").textContent = tr("past"); $("cardOpen").textContent = tr("open");
+  if (likeCtx) { const on = likedKeys().includes(likeCtx.date + "|" + likeCtx.title); $("likeBtn").textContent = tr(on ? "liked" : "like"); }
   $("mutedTxt").textContent = tr("muted"); $("rate").title = $("rate").ariaLabel = tr("rate");
   $("share").querySelector("span").textContent = tr("share");
   $("cname").textContent = st("name"); $("ctag").textContent = st("tagline") || "";

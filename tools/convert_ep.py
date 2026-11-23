@@ -33,7 +33,8 @@ for ti, t in enumerate(topics[1:]):
     nxt = topics[ti + 2]['from'] if ti + 2 < len(topics) else (segs.get('pickup', n))
     end = max(end, nxt - 1) if nxt - 1 > end else end  # fold gap lines into this card
     cards.append({'label': t['title'], 'points': t.get('bullets', []),
-                  'url': t.get('url', ''), 'lines': [line(i) for i in range(t['from'], end + 1)]})
+                  'url': t.get('url', ''), 'tags': t.get('tags', []),
+                  'lines': [line(i) for i in range(t['from'], end + 1)]})
 rest_start = topics[-1]['to'] + 1
 main_caster = None
 mid_closing = None  # 新形式（締めの挨拶の後におまけトラック）用: (締め開始行, おまけ開始行)
