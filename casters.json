@@ -1,0 +1,20 @@
+{
+ "default": "kaede",
+ "casters": [
+  {
+   "id": "amane",
+   "dir": "casters/amane",
+   "name": "甘音"
+  },
+  {
+   "id": "kaede",
+   "dir": "casters/kaede",
+   "name": "楓"
+  },
+  {
+   "id": "makoto",
+   "dir": "casters/makoto",
+   "name": "まこと"
+  }
+ ]
+}

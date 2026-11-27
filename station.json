@@ -1,0 +1,33 @@
+{
+ "format": "myradio/station-1",
+ "name": "マルラジオ（仮）",
+ "description": "三姉妹キャスターが読む、朝のAI・テクノロジーニュースラジオ。",
+ "tagline": "AI・テクノロジー 朝のニュース",
+ "logo": null,
+ "url": "https://aki4622-oss.github.io/maru-radio/",
+ "repo": "https://github.com/aki4622-oss/maru-radio",
+ "language": "ja",
+ "languages": [
+  "ja"
+ ],
+ "schedule": {
+  "every": "day",
+  "time": "06:10",
+  "timezone": "Asia/Tokyo"
+ },
+ "episodes": "episodes.json",
+ "character": {
+  "pack": "casters/kaede/character.json",
+  "thumbnail": "casters/kaede/idle.webp",
+  "note": "AIで生成したキャラクターです"
+ },
+ "credits": [
+  "音声合成：Irodori-TTS"
+ ],
+ "caster": "",
+ "audio": {
+  "dir": "audio",
+  "keep_days": 30
+ },
+ "weather": true
+}
